@@ -1,0 +1,32 @@
+# Rust
+target/
+**/*.rs.bk
+
+# Node / Frontend
+node_modules/
+dist/
+
+# Tauri
+**/src-tauri/gen/schemas/
+
+# Cygwin-Payload (wird gebaut)
+payload/out/
+payload/cache/
+
+# Lokale Einstellungen und Geheimnisse
+.claude/settings.local.json
+.env
+.env.*
+*.pfx
+*.p12
+
+# Laufzeitdaten der App beim Entwickeln
+logs/
+OpenXterm.toml
+vault.bin
+
+# Editor/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
