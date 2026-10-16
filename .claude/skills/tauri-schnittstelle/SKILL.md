@@ -47,5 +47,15 @@ Muster für Host-Key, RDP-Zertifikat, Passwort, 2FA:
 - Befehle prüfen alle Parameter (Ports, Pfade, Längen).
 - Tauri-Berechtigungen (`capabilities/`) so eng wie möglich: nur die Befehle freigeben, die das Fenster braucht.
 
+## Stand Spike S1 (Etappe B)
+| Art | Name | Daten |
+|---|---|---|
+| Befehl | `ssh_connect(addr, cols, rows, onData: Channel)` → `session_id` | Ausgabe als Rohbytes über `onData` |
+| Befehl | `ssh_write(sessionId, data: string)`, `ssh_resize(sessionId, cols, rows)`, `session_close(sessionId)` | – |
+| Befehl | `prompt_answer(requestId, accept: bool)` | – |
+| Ereignis | `ssh://host-key` | `{requestId \| null, sessionId, host, algorithm, fingerprint, status, autoAccepted}` (`requestId` null = Auto-Modus, schon akzeptiert) |
+| Ereignis | `ssh://connected` | `{sessionId, millis}` – erste Daten vom Server |
+| Ereignis | `session://closed` | `{sessionId, reason}` |
+
 ## Pflege
 Neue oder geänderte Befehle/Kanäle/Ereignisse **hier eintragen** und auf beiden Seiten gleichzeitig ändern. Ab Phase 1 gehören die TypeScript-Typen in `app/src/api/` (eine Datei je Bereich).

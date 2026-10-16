@@ -55,12 +55,14 @@ fit-Addon / Fenstergröße ──invoke ssh_resize(cols, rows)──► window_c
 Host-Key: In `check_server_key` den SHA256-Fingerprint ermitteln, ein Ereignis an die Oberfläche schicken und **auf die Antwort warten** (z. B. `tokio::sync::oneshot`). Die Oberfläche zeigt einen Dialog „Vertrauen / Abbrechen“. Im Auto-Modus wird der Fingerprint ins Log geschrieben und automatisch akzeptiert – nur im Spike.
 
 **Akzeptanz**
-- [ ] Verbindung zu `127.0.0.1:2222` als `tester`, Prompt erscheint.
-- [ ] Der angezeigte Fingerprint stimmt mit der Ausgabe von `testenv.sh start` überein.
-- [ ] Im Screenshot: Ausgabe von `ls -la /` und ein Unicode-Test (`printf 'äöü € ✓\n'`) korrekt.
-- [ ] `vim` oder `top` werden korrekt gezeichnet (Screenshot), Fenstergröße stimmt.
-- [ ] Eingaben per `xdotool type` landen im Terminal (Cloud-Test der Tastaturkette).
-- [ ] Verbindungsabbruch wird angezeigt, App stürzt nicht ab.
+- [x] Verbindung zu `127.0.0.1:2222` als `tester`, Prompt erscheint. (`screenshots/b1-prompt.png`)
+- [x] Der angezeigte Fingerprint stimmt mit der Ausgabe von `testenv.sh start` überein. (`b2-hostkey-dialog.png`, `b1-prompt.png`)
+- [x] Im Screenshot: Ausgabe von `ls -la /` und ein Unicode-Test (`printf 'äöü € ✓\n'`) korrekt. (`b3-ls-unicode.png`)
+- [x] `vim` oder `top` werden korrekt gezeichnet (Screenshot), Fenstergröße stimmt. (`b4-top.png`, `b4-vim-resize.png`)
+- [x] Eingaben per `xdotool type` landen im Terminal (Cloud-Test der Tastaturkette). (`b3-ls-unicode.png`)
+- [x] Verbindungsabbruch wird angezeigt, App stürzt nicht ab. (`b6-abbruch.png`, `b6-trennen-und-server-aus.png`)
+
+Messwerte und Probleme: `spikes/s1-ssh-rdp/NOTIZEN.md`.
 
 ## Etappe C – RDP-Tab
 
