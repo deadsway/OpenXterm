@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { getSpikeConfig, type SpikeConfig, type TabId } from "./api";
+import SshTab, { type SshStatus } from "./SshTab";
 import "./App.css";
 
 const TABS: { id: TabId; label: string; placeholder: string }[] = [
-  { id: "ssh", label: "SSH", placeholder: "SSH-Terminal folgt in Etappe B." },
+  { id: "ssh", label: "SSH", placeholder: "" },
   { id: "rdp", label: "RDP", placeholder: "RDP-Bild folgt in Etappe C." },
 ];
 
@@ -11,6 +12,7 @@ function App() {
   const [active, setActive] = useState<TabId>("ssh");
   const [config, setConfig] = useState<SpikeConfig | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [ssh, setSsh] = useState<SshStatus>({ state: "getrennt" });
 
   useEffect(() => {
     getSpikeConfig()
@@ -21,7 +23,6 @@ function App() {
       .catch((e: unknown) => setError(String(e)));
   }, []);
 
-  const current = TABS.find((t) => t.id === active) ?? TABS[0];
 
   return (
     <div className="app">
@@ -41,9 +42,30 @@ function App() {
         ))}
       </div>
 
-      <main className="panel" role="tabpanel" id={`panel-${current.id}`} aria-labelledby={`tab-${current.id}`}>
-        <p className="placeholder">{current.placeholder}</p>
-      </main>
+      {/* Panels stay mounted so a tab switch keeps the terminal/canvas. */}
+      {TABS.map((t) => (
+        <main
+          key={t.id}
+          className="panel"
+          role="tabpanel"
+          id={`panel-${t.id}`}
+          aria-labelledby={`tab-${t.id}`}
+          hidden={t.id !== active}
+        >
+          {t.id === "ssh" ? (
+            config && (
+              <SshTab
+                addr={config.sshAddr}
+                autoConnect={config.auto === "ssh"}
+                visible={active === "ssh"}
+                onStatus={setSsh}
+              />
+            )
+          ) : (
+            <p className="placeholder">{t.placeholder}</p>
+          )}
+        </main>
+      ))}
 
       <footer className="statusbar">
         {error ? (
@@ -55,6 +77,18 @@ function App() {
             <span>RDP: {config.rdpAddr}</span>
             <span className="sep">·</span>
             <span>Auto: {config.auto ?? "aus"}</span>
+            <span className="sep">·</span>
+            <span>
+              SSH {ssh.state}
+              {ssh.millis !== undefined && ` (${ssh.millis} ms)`}
+              {ssh.size && ` · ${ssh.size}`}
+            </span>
+            {ssh.fingerprint && (
+              <>
+                <span className="sep">·</span>
+                <span className="mono">{ssh.fingerprint}</span>
+              </>
+            )}
           </>
         ) : (
           <span>Lade Konfiguration …</span>
