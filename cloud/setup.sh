@@ -18,7 +18,7 @@ apt-get install -y --no-install-recommends \
   `# Oberfläche ohne Monitor testen und Screenshots machen` \
   xvfb imagemagick xdotool \
   `# Testserver: SSH und RDP (xrdp) – gestartet von testing/testenv.sh` \
-  openssh-server xrdp xorgxrdp dbus-x11 xterm icewm x11-xserver-utils
+  openssh-server xrdp xorgxrdp dbus-x11 xterm icewm x11-xserver-utils sshpass
 
 # xrdp/sshd nicht automatisch als Dienst laufen lassen – testenv.sh startet sie bei Bedarf
 systemctl disable xrdp xrdp-sesman ssh 2>/dev/null || true
