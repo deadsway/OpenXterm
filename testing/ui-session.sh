@@ -18,6 +18,7 @@ set -euo pipefail
 export DISPLAY=:99
 export WEBKIT_DISABLE_DMABUF_RENDERER=1   # WebKitGTK ohne GPU stabil betreiben
 export LIBGL_ALWAYS_SOFTWARE=1
+export LC_ALL=C.UTF-8                     # sonst bricht xdotool type bei Umlauten ab
 STATE=/tmp/openxterm-ui
 mkdir -p "$STATE"
 
