@@ -40,8 +40,8 @@ Daraus folgt für den Spike: **RDP gegen xrdp immer mit TLS, ohne CredSSP, mit A
 - Automatischer Start für Screenshots: Ist `OX_SPIKE_AUTO=ssh` bzw. `=rdp` gesetzt, öffnet die App sofort den Tab und verbindet zum Testserver.
 
 **Akzeptanz**
-- [ ] `npm run tauri build -- --debug --no-bundle` läuft in der Cloud durch.
-- [ ] Screenshot mit `testing/shot.sh` zeigt das Fenster mit beiden Tabs.
+- [x] `npm run tauri build -- --debug --no-bundle` läuft in der Cloud durch.
+- [x] Screenshot mit `testing/shot.sh` zeigt das Fenster mit beiden Tabs (`spikes/s1-ssh-rdp/screenshots/a-geruest.png`).
 
 ## Etappe B – SSH-Tab
 
