@@ -4,8 +4,8 @@ OpenXterm verwendet bzw. plant die folgenden Komponenten. Beim Einbinden: tatsä
 
 | Komponente | Verwendung | Lizenz (vor Einbindung prüfen) | Projekt | Status |
 |---|---|---|---|---|
-| Tauri 2 | App-Gerüst | MIT / Apache-2.0 | https://tauri.app | geplant (Spike S1) |
-| React, Vite, TypeScript | Oberfläche | MIT / Apache-2.0 | https://react.dev, https://vite.dev | geplant (Spike S1) |
+| Tauri 2 | App-Gerüst | MIT / Apache-2.0 | https://tauri.app | im Spike S1 verwendet (2.12.4) |
+| React, Vite, TypeScript | Oberfläche | MIT / Apache-2.0 | https://react.dev, https://vite.dev | im Spike S1 verwendet (React 19.3.1, Vite 8.3.4, TS 6.0.3) |
 | xterm.js (+ Addons) | Terminal | MIT | https://xtermjs.org | geplant (Spike S1) |
 | russh, russh-sftp | SSH, SFTP, Tunnel | Apache-2.0 | https://github.com/Eugeny/russh | geplant (Spike S1) |
 | IronRDP | RDP | MIT / Apache-2.0 | https://github.com/Devolutions/IronRDP | geplant (Spike S1) |
