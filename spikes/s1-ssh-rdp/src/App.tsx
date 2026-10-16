@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { getSpikeConfig, type SpikeConfig, type TabId } from "./api";
 import SshTab, { type SshStatus } from "./SshTab";
+import RdpTab, { type RdpStatus } from "./RdpTab";
 import "./App.css";
 
-const TABS: { id: TabId; label: string; placeholder: string }[] = [
-  { id: "ssh", label: "SSH", placeholder: "" },
-  { id: "rdp", label: "RDP", placeholder: "RDP-Bild folgt in Etappe C." },
+const TABS: { id: TabId; label: string }[] = [
+  { id: "ssh", label: "SSH" },
+  { id: "rdp", label: "RDP" },
 ];
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
   const [config, setConfig] = useState<SpikeConfig | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [ssh, setSsh] = useState<SshStatus>({ state: "getrennt" });
+  const [rdp, setRdp] = useState<RdpStatus>({ state: "getrennt" });
 
   useEffect(() => {
     getSpikeConfig()
@@ -62,7 +64,14 @@ function App() {
               />
             )
           ) : (
-            <p className="placeholder">{t.placeholder}</p>
+            config && (
+              <RdpTab
+                addr={config.rdpAddr}
+                autoConnect={config.auto === "rdp"}
+                visible={active === "rdp"}
+                onStatus={setRdp}
+              />
+            )
           )}
         </main>
       ))}
@@ -82,6 +91,13 @@ function App() {
               SSH {ssh.state}
               {ssh.millis !== undefined && ` (${ssh.millis} ms)`}
               {ssh.size && ` · ${ssh.size}`}
+            </span>
+            <span className="sep">·</span>
+            <span>
+              RDP {rdp.state}
+              {rdp.millis !== undefined && ` (1. Bild ${rdp.millis} ms)`}
+              {rdp.size && ` · ${rdp.size}`}
+              {rdp.fps !== undefined && ` · ${rdp.fps} fps · ${rdp.kbps} KiB/s · Canvas ${rdp.paints ?? 0} Rechtecke/s`}
             </span>
             {ssh.fingerprint && (
               <>

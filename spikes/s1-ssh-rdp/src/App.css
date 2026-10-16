@@ -191,3 +191,27 @@ button.primary {
   justify-content: flex-end;
   gap: 8px;
 }
+
+.rdp-host {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+.rdp-canvas {
+  display: block;
+  outline: none;
+}
+
+/* While connected the remote cursor is drawn into the image (software pointer). */
+.rdp-canvas.live {
+  cursor: none;
+}
+
+.toolbar-msg {
+  color: var(--fg-dim);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -1,5 +1,6 @@
 use serde::Serialize;
 
+mod rdp;
 mod ssh;
 
 const DEFAULT_SSH_ADDR: &str = "127.0.0.1:2222";
@@ -41,24 +42,42 @@ fn spike_config() -> SpikeConfig {
     }
 }
 
+/// Closes an SSH or RDP session.
+#[tauri::command]
+async fn session_close(
+    ssh_state: tauri::State<'_, ssh::SshState>,
+    rdp_state: tauri::State<'_, rdp::RdpState>,
+    session_id: String,
+) -> Result<(), String> {
+    if rdp_state.close(&session_id)? {
+        return Ok(());
+    }
+    ssh::close(&ssh_state, &session_id).await
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tracing_subscriber::fmt()
         .with_env_filter(
-            tracing_subscriber::EnvFilter::try_from_default_env()
-                .unwrap_or_else(|_| tracing_subscriber::EnvFilter::new("info,russh=warn")),
+            tracing_subscriber::EnvFilter::try_from_default_env().unwrap_or_else(|_| {
+                tracing_subscriber::EnvFilter::new("info,russh=warn,ironrdp=info")
+            }),
         )
         .init();
 
     tauri::Builder::default()
         .manage(ssh::SshState::default())
+        .manage(rdp::RdpState::default())
         .invoke_handler(tauri::generate_handler![
             spike_config,
             ssh::ssh_connect,
             ssh::ssh_write,
             ssh::ssh_resize,
-            ssh::session_close,
-            ssh::prompt_answer
+            ssh::prompt_answer,
+            session_close,
+            rdp::rdp_connect,
+            rdp::rdp_input,
+            rdp::rdp_resize
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
