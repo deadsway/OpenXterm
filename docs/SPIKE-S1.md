@@ -80,13 +80,14 @@ Hinweise:
 - `ironrdp-client` prüft TLS-Zertifikate standardmäßig **nicht**. Für den Spike in Ordnung. Notieren, dass OpenXterm später einen Fingerprint-Dialog braucht (Skill `sicherheit`).
 - Keine Bilddaten als JSON senden – nur Rohbytes über den Kanal.
 - Messen: Zeit bis zum ersten Bild, Bytes und Bilder pro Sekunde bei Bewegung (z. B. Fenster im xrdp-Desktop verschieben), Speicherverbrauch.
+- **Umgesetzt mit IronRDP aus Git** (Commit `62246b3`) statt crates.io: `ironrdp-client` 0.1.0 von crates.io ist wegen Release-Candidate-Pins (picky → curve25519-dalek/p256/ecdsa) nicht mit russh kombinierbar. Am Commit liefert `with_desktop_updates()` die geänderten Regionen direkt. Details: `spikes/s1-ssh-rdp/NOTIZEN.md`.
 
 **Akzeptanz**
-- [ ] Screenshot zeigt den xrdp-Desktop mit dem Text `OPENXTERM-RDP-TEST`.
-- [ ] Mausklick und Tastatur: per `xdotool` in das xterm im RDP-Bild `echo spike-ok` tippen – Text erscheint im nächsten Screenshot.
-- [ ] Tab wechseln und zurück: Bild bleibt erhalten.
-- [ ] Messwerte stehen im Ergebnis.
-- [ ] Optional: dynamische Größe (Canvas-Größe ändern → neue Auflösung).
+- [x] Screenshot zeigt den xrdp-Desktop mit dem Text `OPENXTERM-RDP-TEST`. (`screenshots/c1-desktop.png`)
+- [x] Mausklick und Tastatur: per `xdotool` in das xterm im RDP-Bild `echo spike-ok` tippen – Text erscheint im nächsten Screenshot. (`c2-eingabe.png`)
+- [x] Tab wechseln und zurück: Bild bleibt erhalten. (`c3-tabwechsel.png`)
+- [x] Messwerte stehen im Ergebnis. (`NOTIZEN.md`, Etappe C; `c4-bewegung.png`, `c4b-bewegung-ohne-remotefx.png`)
+- [x] Optional: dynamische Größe (Canvas-Größe ändern → neue Auflösung). (`c5-resize.png`; xrdp: per Neuverbindung)
 
 ## Etappe D – Windows (machst du)
 
