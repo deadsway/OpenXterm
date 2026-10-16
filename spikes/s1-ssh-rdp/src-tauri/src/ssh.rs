@@ -306,9 +306,9 @@ pub async fn ssh_resize(
         .map_err(|_| "Sitzung beendet".to_owned())
 }
 
-#[tauri::command]
-pub async fn session_close(state: State<'_, SshState>, session_id: String) -> Result<(), String> {
-    let tx = state.sender(&session_id)?;
+/// Closes an SSH session; called by the shared `session_close` command.
+pub async fn close(state: &SshState, session_id: &str) -> Result<(), String> {
+    let tx = state.sender(session_id)?;
     tx.send(Cmd::Close)
         .await
         .map_err(|_| "Sitzung beendet".to_owned())

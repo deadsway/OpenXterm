@@ -57,5 +57,17 @@ Muster für Host-Key, RDP-Zertifikat, Passwort, 2FA:
 | Ereignis | `ssh://connected` | `{sessionId, millis}` – erste Daten vom Server |
 | Ereignis | `session://closed` | `{sessionId, reason}` |
 
+## Stand Spike S1 (Etappe C)
+| Art | Name | Daten |
+|---|---|---|
+| Befehl | `rdp_connect(addr, width, height, onFrame: Channel)` → `session_id` | Bild als Rohbytes über `onFrame`, ein Paket je Rechteck im Format oben |
+| Befehl | `rdp_input(sessionId, event)` (synchron, damit die Reihenfolge bleibt) | `event` mit Tag `kind`: `mouseMove{x,y}`, `mouseButton{button,pressed,x,y}`, `wheel{deltaY,x,y}`, `key{code,pressed}` (`KeyboardEvent.code`), `releaseAll` |
+| Befehl | `rdp_resize(sessionId, width, height)` | – |
+| Befehl | `session_close(sessionId)` – gemeinsam für SSH und RDP | – |
+| Ereignis | `rdp://connected` | `{sessionId, millis, width, height}` – erstes Bild |
+| Ereignis | `rdp://size` | `{sessionId, width, height}` – Bildgröße (auch beim Start); Canvas unter Erhalt des Inhalts anpassen |
+| Ereignis | `rdp://stats` | `{sessionId, updates, fps, packets, bytes, copyMs}` – einmal pro Sekunde |
+| Ereignis | `session://closed` | `{sessionId, reason}` (wie SSH) |
+
 ## Pflege
 Neue oder geänderte Befehle/Kanäle/Ereignisse **hier eintragen** und auf beiden Seiten gleichzeitig ändern. Ab Phase 1 gehören die TypeScript-Typen in `app/src/api/` (eine Datei je Bereich).
