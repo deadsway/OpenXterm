@@ -6,7 +6,9 @@
 
 ---
 
-## Phase 0 – Vorbereitung und Spike S1
+## Phase 0 – Vorbereitung und Spike S1 ✅
+> **Abgeschlossen am 17.10.2026.** Ergebnis: `spikes/s1-ssh-rdp/ERGEBNIS.md`. Entscheidung: weiter mit Tauri. Offen: NLA gegen Windows, wird in Phase 5 vor dem Bau des RDP-Tabs geprüft.
+
 **Ziel:** Werkzeuge und Cloud stehen; der Spike beweist, dass SSH-Terminal und RDP-Bild in einer Tauri-App funktionieren.
 
 Vorbereitung:

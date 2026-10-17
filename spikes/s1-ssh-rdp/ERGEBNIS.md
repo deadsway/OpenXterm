@@ -2,6 +2,8 @@
 
 Stand: 2026-10-17 · Spec: `docs/SPIKE-S1.md` · Laufende Notizen und alle Rohmesswerte: `NOTIZEN.md`
 
+> **Entscheidung (deadsway, 17.10.2026):** Weiter mit Tauri. NLA gegen Windows wird in Phase 5 vor dem Bau des RDP-Tabs geprüft.
+
 **Kurz:** Der Stack trägt. SSH mit russh und xterm.js funktioniert in der Cloud und unter Windows ohne Einschränkung. RDP mit IronRDP in ein Canvas funktioniert ebenfalls und ist im Release-Build gut benutzbar. Es bleibt ein leichtes Nachziehen, das in Phase 5 angegangen wird. **Empfehlung: weiter mit Tauri 2 + Rust + React.** Größtes offenes Risiko ist **NLA (CredSSP) gegen einen echten Windows-Rechner**, das noch niemand getestet hat.
 
 ## 1. Antworten auf die drei Fragen
@@ -144,7 +146,7 @@ Nach Wichtigkeit sortiert. Pfade relativ zu `spikes/s1-ssh-rdp/`.
 
 | Risiko | Bewertung | Wann klären |
 |---|---|---|
-| **NLA (CredSSP) gegen einen echten Windows-Rechner** | **Hoch, ungetestet.** Nur gegen den IronRDP-Beispielserver geprüft (Handshake ok). xrdp kann kein NLA, Etappe D hatte kein Windows-RDP-Ziel. Ohne NLA funktioniert RDP gegen die meisten Windows-Rechner nicht. Mögliche Stolpersteine: NTLM/Kerberos in `sspi`, Domänenkonten, Kennwort mit Sonderzeichen, CredSSP-Version. | So früh wie möglich, spätestens zu Beginn von Phase 5. Ziel: Windows-VM oder Rechner mit aktiviertem Remotedesktop, Spike mit `with_credssp(true)` |
+| **NLA (CredSSP) gegen einen echten Windows-Rechner** | **Hoch, ungetestet.** Nur gegen den IronRDP-Beispielserver geprüft (Handshake ok). xrdp kann kein NLA, Etappe D hatte kein Windows-RDP-Ziel. Ohne NLA funktioniert RDP gegen die meisten Windows-Rechner nicht. Mögliche Stolpersteine: NTLM/Kerberos in `sspi`, Domänenkonten, Kennwort mit Sonderzeichen, CredSSP-Version. | **Entschieden:** in Phase 5 vor dem Bau des RDP-Tabs. Ziel: Windows-VM oder Rechner mit aktiviertem Remotedesktop, Spike mit `with_credssp(true)` |
 | RDP-Zertifikatsprüfung | Mittel. Haken `CertificateValidationCallback` existiert, ist aber synchron. Die Antwort aus dem Dialog muss auf einem eigenen Thread abgewartet werden. | Phase 5 (RDP-01) |
 | IronRDP-Version / Abhängigkeitskonflikt mit russh | Mittel. crates.io-Release unbrauchbar, Spike auf Git-Commit. Jedes Update von russh oder IronRDP kann die Krypto-Pins wieder kollidieren lassen. | Phase 1 (Workspace) und bei jedem Update (`upstream-watcher`) |
 | Leichtes Nachziehen bei RDP, größere Auflösungen (1080p, 4K) | Mittel. Ursachen und Plan in Abschnitt 4. Bei 1920×1080 ist die Datenmenge ~3-mal so groß wie im Test. | Phase 5 |
@@ -155,7 +157,7 @@ Nach Wichtigkeit sortiert. Pfade relativ zu `spikes/s1-ssh-rdp/`.
 | Tastatur: deutsches Layout, AltGr, tote Tasten, IME | Mittel. Der Spike meldet US-Layout (0x0409). Eingabe unter Windows funktioniert grundsätzlich, Sonderfälle nicht gezielt geprüft. | Phase 1 (SSH), Phase 5 (RDP) |
 | Build-Abhängigkeiten NASM/CMake (`aws-lc-sys`) | Gering. Unter Windows funktioniert es. In der CI (Windows-Runner) und in der Bauanleitung einplanen. | Phase 1 (CI) |
 | WebView2-Durchsatz über `Channel` | Gering bis mittel. Nur unter WebKitGTK gemessen. | Phase 5, Messung aus Abschnitt 4 |
-| `vim` im Windows-Testserver | Gering. Jetzt mit `vim-tiny` vorhanden, aber noch nicht getestet. Die DoD von Phase 1 nennt auch `htop` und `mc`, die in beiden Testservern (Cloud und Docker) noch fehlen. | Phase 1 |
+| `vim` im Windows-Testserver | Gering. Jetzt mit `vim-tiny` vorhanden, aber noch nicht getestet. Die DoD von Phase 1 nennt auch `htop` und `mc`. Beide sind jetzt in `cloud/setup.sh` und `testing/sshd/Dockerfile` ergänzt, aber noch nicht getestet. | Phase 1 |
 
 ## 7. Screenshots
 
