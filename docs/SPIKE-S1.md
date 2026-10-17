@@ -91,14 +91,14 @@ Hinweise:
 
 ## Etappe D – Windows (machst du)
 
-- [ ] Repo klonen, `npm install`, `npm run tauri dev` in `spikes/s1-ssh-rdp`.
-- [ ] Testserver per Docker Desktop (RDP auf Port **3390**!) – SSH- und RDP-Tab funktionieren.
-- [ ] Wenn verfügbar: RDP zu einem echten Windows-Rechner **mit NLA** (CredSSP an). Ergebnis notieren.
-- [ ] Gefühlte Geschwindigkeit bei Terminal und RDP notieren.
+- [x] Repo klonen, `npm install`, `npm run tauri dev` in `spikes/s1-ssh-rdp`. (Windows 11; Build mit Rust, NASM, CMake, WebView2 funktioniert)
+- [x] Testserver per Docker Desktop (RDP auf Port **3390**!) – SSH- und RDP-Tab funktionieren. (`vim`/`vi` fehlten im Container, jetzt in `testing/sshd/Dockerfile` ergänzt, Test steht noch aus)
+- [ ] Wenn verfügbar: RDP zu einem echten Windows-Rechner **mit NLA** (CredSSP an). Ergebnis notieren. → **nicht getestet**, kein Ziel verfügbar. Offenes Risiko in `ERGEBNIS.md`.
+- [x] Gefühlte Geschwindigkeit bei Terminal und RDP notieren. (Terminal flüssig; RDP im Debug-Build deutlich nachziehend, im Release-Build gut benutzbar mit leichtem Nachziehen)
 
 ## Etappe E – Ergebnis
 
-`spikes/s1-ssh-rdp/ERGEBNIS.md` mit:
+`spikes/s1-ssh-rdp/ERGEBNIS.md` mit (✅ erstellt 2026-10-17):
 1. Antwort auf die drei Fragen (ja / ja mit Einschränkung / nein)
 2. Messwerte
 3. Probleme und Umgehungen (mit Links auf Issues/Doku)
