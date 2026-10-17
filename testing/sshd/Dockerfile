@@ -1,11 +1,14 @@
 # Wegwerf-SSH-Server für lokale Tests unter Windows mit Docker Desktop.
 # NUR FÜR TESTS: festes Passwort.
+# vim-tiny und procps (top, ps) wie beim Cloud-Testserver, für Terminaltests.
+# vim-tiny bringt nur vi/vim.tiny mit, deshalb zusätzlich der Link /usr/local/bin/vim.
 FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
- && apt-get install -y --no-install-recommends openssh-server \
+ && apt-get install -y --no-install-recommends openssh-server vim-tiny procps \
  && rm -rf /var/lib/apt/lists/* \
+ && ln -s /usr/bin/vim.tiny /usr/local/bin/vim \
  && useradd -m -s /bin/bash tester && echo 'tester:tester' | chpasswd \
  && mkdir -p /run/sshd \
  && printf '%s\n' 'PasswordAuthentication yes' 'KbdInteractiveAuthentication no' 'PermitRootLogin no' \

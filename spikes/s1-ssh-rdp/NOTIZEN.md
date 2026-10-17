@@ -123,3 +123,12 @@
 ### Nur unter Windows prüfbar
 - Build mit IronRDP aus Git unter Windows (rustls, aws-lc-sys wie bei russh), RDP gegen Docker-xrdp auf **Port 3390** (`$env:OX_RDP_ADDR="127.0.0.1:3390"`), NLA gegen einen echten Windows-Rechner (dafür `with_credssp(true)`; im Spike fest aus → für Etappe D umschaltbar machen).
 - WebView2: Durchsatz von `Channel` mit großen Rohdaten und `putImageData` (hier WebKitGTK). DPI-Skalierung des Canvas (`devicePixelRatio` ≠ 1 → Bild unscharf oder Koordinaten falsch, im Spike nicht behandelt). Echte Tastatur: deutsches Layout (der Spike meldet 0x0409/US an den Server), AltGr, tote Tasten, IME. Gefühlte Geschwindigkeit, RemoteFX gegen Windows-Server.
+
+## Etappe D – Windows 11 (2026-10-17, Rückmeldung Nutzer)
+
+- Build unter Windows: funktioniert (Rust, NASM, CMake, WebView2).
+- Testserver per Docker Desktop (`testing/compose.yaml`, RDP auf 3390).
+- SSH-Tab: Verbindung, Host-Key-Dialog und Befehle funktionieren. `vim`/`vi` waren im Container nicht installiert und deshalb nicht testbar. → `testing/sshd/Dockerfile` installiert jetzt `vim-tiny` und `procps`. `vim-tiny` liefert nur `vi`/`vim.tiny`, deshalb gibt es zusätzlich den Link `/usr/local/bin/vim` (ohne Syntaxfarben, anders als `vim.basic` in der Cloud). Das Image ließ sich in der Cloud nicht bauen (kein Docker-Daemon). Beim nächsten Windows-Test mit `--build` neu bauen.
+- RDP-Tab: Verbindung, Bild, Maus und Tastatur funktionieren.
+- Geschwindigkeit RDP: Debug-Build (`npm run tauri dev`) zieht beim Verschieben von Fenstern deutlich nach. Release-Build (`npm run tauri build`) gut benutzbar, nur noch leichtes Nachziehen. Bewertung und Vorschläge: `ERGEBNIS.md`, Abschnitt 4.
+- NLA gegen echten Windows-Rechner: **nicht getestet** (kein Ziel verfügbar) → offenes Risiko.
