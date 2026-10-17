@@ -1,0 +1,65 @@
+/*
+ * Theme "Klassisch dunkel": flat dark greys like a dark-mode Windows desktop app.
+ * Same token set as classic-light.css.
+ */
+:root[data-theme="classic-dark"] {
+  color-scheme: dark;
+
+  /* Window and surfaces */
+  --color-window-bg: #1f1f1f;
+  --color-surface: #272727;
+  --color-surface-alt: #2c2c2c;
+  --color-menubar-bg: #202020;
+  --color-toolbar-bg: #2b2b2b;
+  --color-sidebar-rail-bg: #1b1b1b;
+  --color-sidebar-bg: #252525;
+  --color-sidebar-header-bg: #2d2d2d;
+  --color-tabbar-bg: #1c1c1c;
+  --color-tab-bg: #262626;
+  --color-tab-active-bg: #0f0f0f;
+  --color-statusbar-bg: #1a1a1a;
+  --color-input-bg: #1e1e1e;
+
+  /* Lines */
+  --color-border: #3a3a3a;
+  --color-border-strong: #555555;
+  --color-separator: #3d3d3d;
+
+  /* Text */
+  --color-text: #ececec;
+  --color-text-muted: #a3a3a3;
+  --color-text-disabled: #6a6a6a;
+
+  /* Interaction */
+  --color-hover: #353535;
+  --color-pressed: #414141;
+  --color-selected: #33475c;
+  --color-selected-border: #4f6f8f;
+  --color-focus: #7fa8d1;
+  --color-accent: #6e9cc9;
+  --color-accent-text: #101010;
+
+  /* Icons */
+  --color-icon: #c9d2db;
+  --color-icon-folder: #d2ac5c;
+  --color-type-ssh: #6fbf8f;
+  --color-type-rdp: #7fa8d1;
+  --color-type-local: #bdbdbd;
+  --color-type-serial: #b59ad0;
+
+  /* Status */
+  --color-status-ok: #4fbf6f;
+  --color-status-warn: #d9a441;
+  --color-status-error: #e06c6c;
+
+  /* Terminal (dark, console-like) */
+  --term-bg: #0f0f0f;
+  --term-fg: #cccccc;
+  --term-muted: #808080;
+  --term-cursor: #cccccc;
+  --term-green: #6cc76c;
+  --term-blue: #6f9fe0;
+  --term-cyan: #5fc4c4;
+  --term-yellow: #d7ba5f;
+  --term-red: #e06c6c;
+}

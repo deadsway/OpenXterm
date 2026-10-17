@@ -1,0 +1,67 @@
+/*
+ * Theme-independent design tokens: spacing, type, sizes.
+ * Colors live in themes/*.css. Components use only var(--…), never raw values.
+ */
+:root {
+  /* Fonts */
+  --font-ui: "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "Cascadia Mono", Consolas, "DejaVu Sans Mono", monospace;
+
+  /* Font sizes */
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-md: 13px;
+  --font-size-lg: 14px;
+  --font-size-toolbar: 12px;
+  --font-size-terminal: 13px;
+  --line-height-ui: 1.35;
+  --line-height-terminal: 1.4;
+  --font-weight-normal: 400;
+  --font-weight-strong: 600;
+
+  /* Spacing scale */
+  --space-0: 1px;
+  --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 6px;
+  --space-4: 8px;
+  --space-5: 12px;
+  --space-6: 16px;
+
+  /* Shape */
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --border-width: 1px;
+  --accent-bar-width: 2px;
+
+  /* Menu bar */
+  --menubar-height: 24px;
+
+  /* Toolbar (large, labelled buttons) */
+  --toolbar-padding: var(--space-2);
+  --toolbar-button-width: 74px;
+  --toolbar-button-height: 60px;
+  --toolbar-icon-size: 28px;
+  --toolbar-icon-stroke: 1.6;
+  --toolbar-gap: var(--space-1);
+  --toolbar-separator-height: 44px;
+
+  /* Sidebar */
+  --sidebar-rail-width: 28px;
+  --sidebar-panel-width: 264px;
+  --sidebar-header-height: 30px;
+  --splitter-width: 5px;
+  --tree-row-height: 22px;
+  --tree-indent: 16px;
+  --tree-icon-size: 16px;
+  --small-icon-size: 14px;
+
+  /* Tabs */
+  --tabbar-height: 30px;
+  --tab-min-width: 140px;
+  --tab-max-width: 220px;
+
+  /* Status bar */
+  --statusbar-height: 26px;
+  --status-dot-size: 8px;
+}

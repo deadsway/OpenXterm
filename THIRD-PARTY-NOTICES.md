@@ -6,6 +6,7 @@ OpenXterm verwendet bzw. plant die folgenden Komponenten. Beim Einbinden: tatsä
 |---|---|---|---|---|
 | Tauri 2 | App-Gerüst | MIT / Apache-2.0 | https://tauri.app | im Spike S1 verwendet (2.12.4) |
 | React, Vite, TypeScript | Oberfläche | MIT / Apache-2.0 | https://react.dev, https://vite.dev | im Spike S1 verwendet (React 19.3.1, Vite 8.3.4, TS 6.0.3) |
+| Lucide (`lucide-react`) | Symbole der Oberfläche | ISC | https://lucide.dev | im Spike S0 verwendet (1.59.0) |
 | xterm.js (+ Addons) | Terminal | MIT | https://xtermjs.org | im Spike S1 verwendet (`@xterm/xterm` 6.0.0, `@xterm/addon-fit` 0.11.0) |
 | russh, russh-sftp | SSH, SFTP, Tunnel | Apache-2.0 | https://github.com/Eugeny/russh | russh im Spike S1 verwendet (0.64.1, zieht aws-lc-rs: ISC/Apache-2.0); russh-sftp geplant |
 | IronRDP | RDP | MIT / Apache-2.0 | https://github.com/Devolutions/IronRDP | im Spike S1 verwendet: Git-Commit `62246b3` (ironrdp-client 0.1.0, ironrdp-input 0.7.0, ironrdp-pdu 0.9.0, Feature `rustls` → rustls 0.23: Apache-2.0/ISC/MIT); nicht crates.io wegen Versionskonflikt mit russh |
