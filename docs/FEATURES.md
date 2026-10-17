@@ -81,11 +81,12 @@ Ziel: **alle** Funktionen von MobaXterm (Home **und** Professional) nachbilden. 
 | UI-09 | In Infobereich minimieren / Strg+M | D 5.3 | P3 | 4 | APP | Tauri Tray-API | ⬜ |
 | UI-10 | Pop-up-Terminal per globalem Hotkey (Strg+Alt+M) | D 5.3 | P3 | 4 | APP | `RegisterHotKey` | ⬜ |
 | UI-11 | Alle Tastenkürzel konfigurierbar (Liste aus D 5.3 als Standard) | D 3.1, D 5.3 | P2 | 4 | APP | | ⬜ |
-| UI-12 | Skins/Themes, Transparenz, Hell/Dunkel | D 2.1 | P2 | 4 | APP | | ⬜ |
+| UI-12 | Klassisches Theme hell/dunkel | D 2.1 | P1 | 1 | APP | Farben, Abstände, Schriftgrößen nur über CSS-Variablen; Umschalter in der Statusleiste; Mockup in `spikes/s0-layout` | ⬜ |
 | UI-13 | Hohe DPI, Skalierungsparameter `-dpi` | D 5.4, D 6.7 | P1 | 1 | APP | WebView skaliert selbst; Zoomstufe als Einstellung | ⬜ |
 | UI-14 | Flimmerfreies Hauptfenster (Option) | D 3.4 | P3 | 4 | APP | entfällt weitgehend (WebView) | ⬜ |
 | UI-15 | Startbildschirm mit Schnellzugriff und zuletzt genutzten Sessions | F | P2 | 1 | APP | | ⬜ |
 | UI-16 | Zweisprachige Oberfläche (Deutsch/Englisch) | eigene | P2 | 1 | APP | i18n-Bibliothek im Frontend, JSON je Sprache | ⬜ |
+| UI-17 | Modernes Theme mit Pastelltönen | D 2.1 | P3 | 4 | APP | weiteres Theme über dieselben CSS-Variablen wie UI-12; Transparenz und weitere Skins ebenfalls hier | ⬜ |
 
 ## LOCAL – Lokales Terminal und Unix-Umgebung
 
